@@ -1,0 +1,37 @@
+# Smithery configuration for Cakto
+# Schema: https://smithery.ai/docs/build/project-config
+# Remote HTTP MCP — server hosted at https://api.mcp.ai/p_cakto
+
+name: cakto-mcp
+displayName: "Cakto"
+description: >
+  Conecte sua conta Cakto e leia suas vendas por linguagem natural: pedidos, faturamento, assinaturas, churn, clientes e produtos. Gere um Client ID e um Client Secret com escopos de leitura no Painel Cakto (em API) e conecte em um clique. Somente leitura, nenhuma ferramenta altera dados na Cakto.
+
+version: 0.1.0
+license: MIT
+homepage: https://github.com/mcp-dir/cakto-mcp
+repository: https://github.com/mcp-dir/cakto-mcp
+
+tags:
+  - cakto
+  - payments
+  - checkout
+  - infoproduct
+  - creator-economy
+  - sales
+  - subscriptions
+  - brazil
+
+# Remote HTTP MCP — sem startCommand local (servidor já hospedado)
+startCommand:
+  type: http
+  url: https://api.mcp.ai/p_cakto
+
+auth:
+  type: oauth2
+  resourceMetadataUrl: https://api.mcp.ai/p_cakto/.well-known/oauth-protected-resource
+  fallback:
+    type: agent-auth
+    description: >
+      Para clientes sem OAuth 2.1. O agente expõe uma tool authenticate(token).
+      Usuário gera o JWT em https://app.mcp.ai/agent-auth e cola no chat.
